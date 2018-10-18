@@ -26,6 +26,7 @@ namespace TreeView
             Datas = Getdatas();
         }
         // Формирование плоского списка узлов. Только для примера.
+        // Flat List of nodes. Only for example
         private List<TreeViewData> Getdatas()
         {
             List<TreeViewData> Datas = new List<TreeViewData>();
@@ -86,12 +87,14 @@ namespace TreeView
             return Datas;
         }
         // установка признака открытости для узлов списка.
+        // "opened" property setting to nodes of list
         private void GetOpenedNodesArray(string[] openedNodes)
         {
             (from d in Datas join o in openedNodes on d.id equals o select d).ToList().ForEach(x => x.opened = true);
         }
 
         // Формирование дерева для jstree
+        // building tree for jstree
         public List<TreeViewContainer> GetDataTree(string id, string[] openedNodes)
         {
             GetOpenedNodesArray(openedNodes);
@@ -112,6 +115,7 @@ namespace TreeView
 
     /// <summary>
     /// Для манипулирования со строкой данных открытых узлов.
+    /// Handling string of Data of opened nodes
     /// Формат строки: <id1><id2></id2></id1><id3></id3> 
     /// </summary>
     public class TreeViewPathProvider
@@ -137,12 +141,14 @@ namespace TreeView
             {
                 openNodesString = value;
                 // формируем массив id открытых узлов
+                // making array of id`s of opened nodes
                 openedNodes = (from m in rg.Matches(OpenNodesString) select m.Groups["node"].Value).ToArray(); 
             }
         }
         public TreeViewPathProvider AddNode(string parentId, string id)
         {
             // # -- виртуальный корень леса. 
+            // # -- virtual node of forest
             if (parentId == "#") // при разворачивании корня дерева (у него parentId == "#") забываем всю историю и начинаем новую
             {
                 OpenNodesString = $"<{id}></{id}>";
@@ -150,6 +156,7 @@ namespace TreeView
             else
             {
                 // вставляем id открываемого узла.
+                // insert id of new jpening node
                 int start = OpenNodesString.IndexOf($"<{parentId}>") + $"<{parentId}>".Length;
                 OpenNodesString = OpenNodesString.Insert(start, $"<{id}></{id}>");
             }
@@ -158,6 +165,7 @@ namespace TreeView
         public TreeViewPathProvider DelNode(string id)
         {
             // При закрытии узла удаляем его вместе со всем содержимым из OpenNodesString
+            // Delen node with all him content
             Regex rgr = new Regex($@"<{id}>.*</{id}>");
             OpenNodesString = rgr.Replace(OpenNodesString, "");
             return this;
