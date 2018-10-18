@@ -41,49 +41,7 @@ namespace TreeView.Controllers
         {
             return View();
         }
-        /*
-        public JsonResult GetNodes(int? parentId)
-        {
-            var res = (from r in repo.datas()
-                       where r.ParentId == parentId
-                       select new
-                       {
-                           r.id,
-                           r.text,
-                           r.hasChildren
-                       });
-            var re = Json(res);
-            return Json(res);
-        }
         
-        public JsonResult GetNodesJsTree(string id)
-        {
-            var res = (from r in repo.datas()
-                       where r.ParentId == id
-                       select new
-                       {
-                           r.id,
-                           text = "\u003ca href:\"Home\u002fContact\"\u003e" + r.text + "\u003ca\u003e", // r.text,
-                           r.hasChildren
-                       });
-            var re = Json(res);
-            return Json(res);
-        }
-        */
-        //public JsonResult GetNodesJsTree(string id)
-        //{
-        //    if (!HttpContext.Session.Keys.Contains("ONK")) HttpContext.Session.SetString("ONK", "");
-        //    var res = repo.GetDataTree(id, HttpContext.Session.GetString("ONK"));
-        //    var re = Json(res);
-        //    return Json(res);
-        //}
-        /*
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        */
 
     }
 }
