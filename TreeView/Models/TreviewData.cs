@@ -29,8 +29,11 @@ namespace TreeView.Models
         public TreeViewContainer AddChildrens(List<TreeViewData> srcdata, int level)
         {
             // рекурсивная загрузка дерева.  Загружаются только 2 уровня дочерних узлов (level < 2) 
+           // recursive loading tree. Loads onli 2 levels childs nodes (level < 2) 
             if (level == 2) children = true; // для первого не загружаемого уровня устанавливаем children = true для появления символа открытия (здесь ">").
                                              // Мы не знаем, есть ли у этого уровня дочерние узлы, но дать возможность проверить и загрузить нужно дать.
+                                             // for first not loaded level set children = true for enable open symbol (">")
+                                             // We don`t know is this level has childs nodes, but give the opportunity to check and download need
             if (level < 2)
             {               
                 level++;
