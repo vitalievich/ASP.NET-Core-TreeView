@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Compile Remove="Views\Home\Components\**" />
+    <Content Remove="Components\**" />
+    <Content Remove="Views\Home\Components\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Views\Home\Components\**" />
+    <None Remove="Components\**" />
+    <None Remove="Views\Home\Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\ApiTreeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gijgo" Version="1.9.6" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+</Project>
